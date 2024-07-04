@@ -28,6 +28,7 @@ const userSignUp = async (req, res) => {
         newUser = new userModel({
             name,
             email,
+            role: 'GENERAL',
             password: hashedPassword
         });
 
