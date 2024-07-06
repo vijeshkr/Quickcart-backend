@@ -4,6 +4,8 @@ const userSignIn = require('../controller/user/userSignIn');
 const authToken = require('../middleware/authToken');
 const userDetails = require('../controller/user/userDetails');
 const userLogout = require('../controller/user/userLogout');
+const allUsers = require('../controller/user/allUser');
+const updateUser = require('../controller/user/updateUser')
 
 // Router object
 const router = express.Router();
@@ -19,6 +21,12 @@ router.get('/user-details',authToken,userDetails);
 
 // User logout
 router.post('/logout',userLogout);
+
+// All users data
+router.get('/all-users',authToken,allUsers);
+
+// Update user data
+router.post('/update-user',authToken,updateUser);
 
 
 
