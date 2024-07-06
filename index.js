@@ -6,9 +6,11 @@ dotenv.config();
 const app = express();
 const connectDB = require('./config/db');
 const router = require('./routes');
+const cookieParser = require('cookie-parser');
 
 
 // Middlewares
+app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true,
