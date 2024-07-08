@@ -7,7 +7,23 @@ const app = express();
 const connectDB = require('./config/db');
 const router = require('./routes');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const path = require('path');
+const { uploadFiles } = require('./controller/product/uploadProduct');
 
+
+
+// Configure multer storage
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
+  
+  const upload = multer({ storage: storage });
 
 // Middlewares
 app.use(cookieParser());
@@ -17,8 +33,13 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Serve uploaded files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Router set
 app.use('/api',router);
+// Upload files
+app.post('/api/upload', upload.array('files'), uploadFiles);
 
 // When server is connected to database then run the server
 connectDB().then(() => {
