@@ -10,6 +10,7 @@ const { newProduct } = require('../controller/product/uploadProduct');
 const getProduct = require('../controller/product/getProduct');
 const updateProductController = require('../controller/product/updateProduct');
 const deleteProduct = require('../controller/product/deleteProduct');
+const getOneCategoryProduct = require('../controller/product/getOneCategoryProduct');
 
 // Router object
 const router = express.Router();
@@ -43,6 +44,9 @@ router.post("/update-product",authToken,updateProductController);
 
 // Delete product
 router.delete("/products/:_id",authToken,deleteProduct);
+
+// Get one product from each category
+router.get('/get-oneCategory',getOneCategoryProduct);
 
 
 
