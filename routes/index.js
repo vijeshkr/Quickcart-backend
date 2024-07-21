@@ -20,6 +20,10 @@ const updateAddToCart = require('../controller/cart/updateAddToCart');
 const deleteAddToCart = require('../controller/cart/deleteAddToCart');
 const searchProduct = require('../controller/product/searchProduct');
 const filterProduct = require('../controller/product/filterProduct');
+const paymentController = require('../controller/order/payment');
+const orderSuccess = require('../controller/order/orderSuccess');
+const orderHistory = require('../controller/order/orderhistory');
+const orderHistoryAdmin = require('../controller/order/orderHistoryAdmin');
 
 // Router object
 const router = express.Router();
@@ -84,6 +88,17 @@ router.get('/search',searchProduct);
 // Filter products
 router.post('/filter-product',filterProduct);
 
+// Payment integration
+router.post('/checkout',authToken,paymentController);
+
+// Handle order success
+router.post('/order-success',orderSuccess);
+
+// Current user order history
+router.get('/order-history',authToken,orderHistory);
+
+// Admin order history
+router.get('/order-history-admin',orderHistoryAdmin);
 
 
 module.exports = router;

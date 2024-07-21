@@ -12,7 +12,6 @@ const path = require('path');
 const { uploadFiles } = require('./controller/product/uploadProduct');
 
 
-
 // Configure multer storage
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
