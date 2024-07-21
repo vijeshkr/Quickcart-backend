@@ -25,7 +25,6 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 // Middlewares
-app.use(cookieParser());
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
@@ -40,6 +39,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
+app.use(cookieParser());
 
 // Serve uploaded files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
