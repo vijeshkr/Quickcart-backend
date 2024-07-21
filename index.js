@@ -25,11 +25,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 // Middlewares
-app.use(cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods : ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
-}));
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
