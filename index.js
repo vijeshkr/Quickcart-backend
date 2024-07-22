@@ -14,20 +14,21 @@ const { uploadFiles } = require('./controller/product/uploadProduct');
 
 // Configure multer storage
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
-    },
-  });
-  
-  const upload = multer({ storage: storage });
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
 
 // Middlewares
 app.use(cors({
-    origin: [process.env.FRONTEND_URL, 'https://quickcart-frontend-joep31d11-vijesh-krs-projects.vercel.app'],
-    credentials: true,
+  origin: [process.env.FRONTEND_URL, 'https://quickcart-frontend-joep31d11-vijesh-krs-projects.vercel.app',
+    'https://quickcart-frontend-qzcjaniuz-vijesh-krs-projects.vercel.app'],
+  credentials: true,
 }));
 app.use(cookieParser());
 app.use(express.json());
@@ -36,13 +37,13 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Router set
-app.use('/api',router);
+app.use('/api', router);
 // Upload files
 app.post('/api/upload', upload.array('files'), uploadFiles);
 
 // When server is connected to database then run the server
 connectDB().then(() => {
-    app.listen(PORT,() => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 });
