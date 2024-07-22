@@ -26,7 +26,7 @@ const upload = multer({ storage: storage });
 
 // Middlewares
 app.use(cors({
-  origin: [process.env.FRONTEND_URL, 'quickcart-frontend-ec49pwf44-vijesh-krs-projects.vercel.app',
+  origin: [process.env.FRONTEND_URL, 'https://quickcart-frontend-i63ivs5ld-vijesh-krs-projects.vercel.app',
     'https://quickcart-frontend.vercel.app'],
   credentials: true,
 }));
