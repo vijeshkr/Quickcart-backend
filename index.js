@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
 // Middlewares
 app.use(cors({
   origin: [process.env.FRONTEND_URL, 'https://quickcart-frontend-joep31d11-vijesh-krs-projects.vercel.app',
-    'https://quickcart-frontend-qzcjaniuz-vijesh-krs-projects.vercel.app'],
+    'https://quickcart-frontend-qzcjaniuz-vijesh-krs-projects.vercel.app','https://quickcart-frontend.vercel.app'],
   credentials: true,
 }));
 app.use(cookieParser());
