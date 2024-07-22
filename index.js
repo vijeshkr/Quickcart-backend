@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 
 // Middlewares
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: [process.env.FRONTEND_URL, 'https://quickcart-frontend-joep31d11-vijesh-krs-projects.vercel.app'],
     credentials: true,
 }));
 app.use(cookieParser());
